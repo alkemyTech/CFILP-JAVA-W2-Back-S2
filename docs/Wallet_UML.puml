@@ -1,0 +1,108 @@
+@startuml "Wallet-Clean-Architecture"
+
+' Entidades principales
+class Usuario {
+  -Long id
+  -String nombre
+  -String apellido
+  -String email
+  -String password
+  -Boolean estado
+  +List<Cuenta> getCuentas()
+}
+
+class Rol{
+    - Long id
+    - RolEnum
+}
+
+class Cuenta {
+  -Long id
+  -String cbu
+  -String alias
+  -BigDecimal saldo
+  -TipoMoneda moneda
+  -LocalDateTime fechaApertura
+  -Boolean estado
+}
+
+class Transaccion {
+  -Long id
+  -String numeroReferencia
+  -BigDecimal monto
+  -LocalDateTime fecha
+  -String descripcion
+  -EstadoTransaccion estado
+  -String motivoRechazo
+}
+
+' Tipos específicos de transacciones
+class Transferencia {
+  -Cuenta cuentaOrigen
+  -Cuenta cuentaDestino
+  -String cbuDestino
+  -String aliasDestino
+}
+
+class Deposito {
+  -String comprobante
+  -String origenDeposito
+}
+
+class AlmacenamientoSaldo {
+  -TipoAlmacenamiento tipo
+  -BigDecimal rendimiento
+}
+
+class Tarjeta {
+  -Long id
+  -String numero
+  -LocalDate fechaVencimiento
+  -String cvv
+  -TipoTarjeta tipo
+  -BigDecimal limiteCredito
+  -BigDecimal saldoDisponible
+  -LocalDateTime fechaEmision
+  -Boolean estado
+}
+
+' Enumeraciones
+enum TipoMoneda {
+  ARS
+  USD
+  EUR
+}
+
+enum EstadoTransaccion {
+  PENDIENTE
+  COMPLETADA
+  RECHAZADA
+}
+
+enum TipoTarjeta {
+  DEBITO
+  CREDITO
+  TURBO
+}
+
+enum RolEnum{
+    ADMIN
+    USER
+}
+
+' Relaciones
+Usuario "1" -- "*" Cuenta : tiene >
+Cuenta "1" -- "*" Transaccion : realiza >
+Cuenta "1" -- "*" Tarjeta : asociada >
+Usuario "1" -- "*" Rol : >
+Rol -- RolEnum
+
+Transaccion <|-- Transferencia
+Transaccion <|-- Deposito
+Transaccion <|-- AlmacenamientoSaldo
+
+Cuenta  --  TipoMoneda
+Transaccion "*" -- "1" EstadoTransaccion : tiene >
+Tarjeta "*" -- "1" TipoTarjeta : es de >
+
+@enduml

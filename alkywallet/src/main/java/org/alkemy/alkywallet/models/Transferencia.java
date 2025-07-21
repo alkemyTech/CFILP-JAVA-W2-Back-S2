@@ -1,5 +1,6 @@
 package org.alkemy.alkywallet.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,11 +10,10 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 /**
- * Clase Modelo Transferencia.
+ * Transfer Model Class.
  * <br>
- * Es la clase en cargada del modelo aplicado a las transferencias entre cuentas bancarias.
- *
- * @author Escuadron404
+ * This class is responsable for the model applied to transfers between bank accounts.
+ * @author Facundo Martinez
  */
 
 @AllArgsConstructor
@@ -43,6 +43,7 @@ public class Transferencia extends Transaccion {
 
     @ManyToOne
     @Transient
+    @JsonBackReference
     private Cuenta cuenta;
 
     /**

@@ -20,7 +20,7 @@ import java.util.Map;
  * Controllador Rest para la entidad Tarjeta
  * <br>
  *
- * @Autor: Escuadron404
+ * @Autor: Facundo Martinez
  */
 
 @RestController

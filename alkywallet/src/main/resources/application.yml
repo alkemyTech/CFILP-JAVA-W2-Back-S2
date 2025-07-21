@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alkywallet # nombre de la aplicacion dentro de spring
+    name: tuebowallet # nombre de la aplicacion dentro de spring
 
   h2:
     console:

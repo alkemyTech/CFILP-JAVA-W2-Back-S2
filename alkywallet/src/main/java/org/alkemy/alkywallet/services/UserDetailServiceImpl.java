@@ -9,7 +9,7 @@ import org.alkemy.alkywallet.models.Rol;
 import org.alkemy.alkywallet.models.Usuario;
 import org.alkemy.alkywallet.repositories.RoleRepository;
 import org.alkemy.alkywallet.repositories.UsuarioRepository;
-import org.alkemy.alkywallet.utils.JwtUtils;
+import org.alkemy.alkywallet.auth.utils.JwtUtils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

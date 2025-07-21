@@ -16,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT",
         scheme = "bearer")
 @OpenAPIDefinition(
-        info = @Info(title = "Alkywallet",
+        info = @Info(title = "TurbowWallet",
                 version = "1.0.0",
-                description = "Billetera alkywallet",
+                description = "Billetera TurboWallet",
                 contact = @Contact(
-                        name = "Escuadron404",
-                        email = "roberto@gmail.com",
+                        name = "Facundo Martinez",
+                        email = "martinez.facundo85@gmail.com",
                         url = "https://www.google.com"
                 ),
                 license = @License(

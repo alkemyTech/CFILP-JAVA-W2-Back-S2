@@ -1,4 +1,4 @@
-package org.alkemy.alkywallet.utils;
+package org.alkemy.alkywallet.auth.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

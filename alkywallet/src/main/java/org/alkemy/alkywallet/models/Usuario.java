@@ -16,24 +16,24 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    @NotBlank(message = "Error. Coloque un nombre de usuario")
+    @NotBlank(message = "Error. Name cannot be blank")
     private String nombre;
 
-    @NotBlank
+    @NotBlank(message = "Error. Lastname cannot be blank")
     private String apellido;
 
     @Column(unique = true)
-    @Email
+    @Email(message = "Error. Email must be valid")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Error. Password cannot be blank")
     private String contrasenia;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -49,18 +49,10 @@ public class Usuario {
     @Transient
     private Set<Cuenta> cuentas = new HashSet<>();
 
-    @Column(name = "fecha_registro")
-    private LocalDateTime fechaRegistro;
-
-    @Column(name = "fecha_actualizacion")
-    private LocalDateTime fechaActualizacion;
-
     private Boolean estado;
-
 
     @PrePersist
     private void init() {
-        this.fechaRegistro = LocalDateTime.now();
         this.estado = true;
     }
 

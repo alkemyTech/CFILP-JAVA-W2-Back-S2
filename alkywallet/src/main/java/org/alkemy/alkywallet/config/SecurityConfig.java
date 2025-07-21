@@ -3,7 +3,7 @@ package org.alkemy.alkywallet.config;
 import lombok.RequiredArgsConstructor;
 import org.alkemy.alkywallet.auth.handler.AppAuthenticationEntryPoint;
 import org.alkemy.alkywallet.config.filters.JwtTokenValidator;
-import org.alkemy.alkywallet.utils.JwtUtils;
+import org.alkemy.alkywallet.auth.utils.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Security configuration class
  * <br>
- * Autor:Squad2
+ * @author Facundo Martinez
  */
 
 @Configuration
@@ -83,8 +83,7 @@ public class SecurityConfig {
 
 
     /**
-     * Funcion que permite utilizar un encriptador de contrasenias
-     *
+     * Method to create a PasswordEncoder object with BCrypt algorithm.
      * @return PasswordEncoder object
      */
     @Bean

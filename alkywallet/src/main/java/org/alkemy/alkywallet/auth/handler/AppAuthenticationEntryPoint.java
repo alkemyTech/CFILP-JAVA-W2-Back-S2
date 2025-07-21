@@ -9,6 +9,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * AppAuthenticationEntryPoint Class
+ * @author Facundo Martinez
+ */
+
 @Component
 public class AppAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

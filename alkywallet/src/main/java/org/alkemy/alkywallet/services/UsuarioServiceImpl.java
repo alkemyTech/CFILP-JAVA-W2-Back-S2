@@ -39,24 +39,6 @@ public class UsuarioServiceImpl {
                 .orElseThrow(() -> new IllegalArgumentException("El usuario con el id: " + id + " no existe"));
     }
 
-//    public void crearUsuario(Usuario usuario) {
-//
-//        Usuario newUsuario = new Usuario();
-//
-//        if (usuario == null) {
-//            throw new IllegalArgumentException("El usuario no puede ser nulo");
-//        }
-//
-//        newUsuario.setNombre(usuario.getNombre());
-//        newUsuario.setApellido(usuario.getApellido());
-//        newUsuario.setEmail(usuario.getEmail());
-//        newUsuario.setContrasenia(usuario.getContrasenia());
-//        newUsuario.setRoles(null);
-//        newUsuario.setFechaActualizacion(LocalDateTime.now());
-//
-//        usuarioRepository.save(newUsuario);
-//    }
-
     public Usuario actualizarUsuarioPorId(Long id, Usuario usuario) {
 
         Usuario usuarioActualizado = usuarioRepository
@@ -88,8 +70,6 @@ public class UsuarioServiceImpl {
                 (usuario.getEstado() != null) ? usuario.getEstado() : usuarioActualizado.getEstado()
         );
 
-        usuarioActualizado.setFechaActualizacion(LocalDateTime.now());
-
         return usuarioRepository.save(usuarioActualizado);
 
     }
@@ -119,7 +99,6 @@ public class UsuarioServiceImpl {
         cuentas.forEach(cuenta -> cuenta.getTransferencia().forEach(t -> t.setEstado(false)));
         cuentas.forEach(c -> c.setEstado(false));
         cuentaRepository.saveAll(cuentas);
-        usuario.setFechaActualizacion(LocalDateTime.now());
         usuario.setEstado(false);
 
         usuarioRepository.save(usuario);

@@ -1,6 +1,7 @@
 package org.alkemy.alkywallet.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.alkemy.alkywallet.controllers.dto.TransferenciaDto;
 import org.alkemy.alkywallet.models.Cuenta;
 import org.alkemy.alkywallet.models.Tarjeta;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class TransferenciaServiceImpl {
 
@@ -82,10 +84,18 @@ public class TransferenciaServiceImpl {
 
         tarjeta.getTransferencias().add(transferencia); // relacion entre tarjeta y transferencia
 
+        log.info("Transfer made successfully");
+        log.info("Amount transfer : {}", transferencia.getMonto());
+        log.info("Transfer date : {}", transferencia.getFecha());
+        log.info("Account : {}. Total amount: {}", cuenta.getCbu(), cuenta.getSaldo());
+
+
         // Actualizar saldo de la cuenta
-        BigDecimal nuevoSaldo = saldoActual.subtract(montoTransferencia);
+        BigDecimal nuevoSaldo = saldoActual.add(montoTransferencia);
         cuenta.setSaldo(nuevoSaldo.toString());
         cuentaRepository.save(cuenta);
+
+        log.info("New account balance after transfer: {}", cuenta.getSaldo());
 
         // Guardar la transferencia
         return transferenciaRepository.save(transferencia);
